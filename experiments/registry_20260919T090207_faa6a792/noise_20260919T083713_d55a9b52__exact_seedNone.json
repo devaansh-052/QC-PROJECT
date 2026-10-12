@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "experiment_id": "noise_20260919T083713_d55a9b52__exact_seedNone",
+  "run_id": "noise_20260919T083713_d55a9b52",
+  "timestamp_utc": "2026-09-19T08:37:13+00:00",
+  "timestamp_provenance": "original run ID; run start, not per-model start",
+  "dataset": {
+    "path": "C:\\OneDrive\\Desktop\\QC\\PROJECT\\data\\PS_20174392719_1491204439457_log.csv",
+    "sha256": "16910f90577b0d981bf8ff289714510bb89bc71bff7d3f220f024e287e4eea6b",
+    "bytes": 493534783,
+    "dataset": "PaySim",
+    "kind": "published_synthetic"
+  },
+  "sample_size": {
+    "train": {
+      "rows": 128,
+      "fraud": 64
+    },
+    "validation": {
+      "rows": 2048,
+      "fraud": 13
+    },
+    "test": {
+      "rows": 2048,
+      "fraud": 29
+    }
+  },
+  "feature_set": {
+    "eligible_encoded_inputs": [
+      "numeric__step",
+      "numeric__log_amount",
+      "categorical__type_CASH_IN",
+      "categorical__type_CASH_OUT",
+      "categorical__type_DEBIT",
+      "categorical__type_PAYMENT",
+      "categorical__type_TRANSFER"
+    ],
+    "dimension": 2,
+    "representation": "standard_tanh_v1",
+    "selected_features": null
+  },
+  "split_strategy": {
+    "method": "whole-step temporal partitions, inherited unchanged",
+    "boundaries": {
+      "train": [
+        1,
+        520
+      ],
+      "validation": [
+        521,
+        631
+      ],
+      "test": [
+        632,
+        743
+      ]
+    },
+    "subset_protocol": {
+      "seed": 42,
+      "train_per_class": 64,
+      "validation_rows": 2048,
+      "test_rows": 2048,
+      "dimensions": [
+        2,
+        4,
+        6
+      ],
+      "feature_maps": [
+        "z",
+        "zz"
+      ],
+      "repetitions": [
+        1,
+        2
+      ],
+      "angle_range": [
+        -1.0,
+        1.0
+      ],
+      "angle_encoding": "standard_tanh_v1"
+    },
+    "validation_role": "threshold/model selection",
+    "training_resample": null,
+    "calibration_rows": null
+  },
+  "random_seed": null,
+  "seed_role": "simulator seed; exact reference deterministic",
+  "preprocessing": {
+    "manifest": "results/metrics/qsvc_20260915T143628_87486f0e4a58/data/manifest.json",
+    "manifest_sha256": "1bc823b5b13fe902087444c2b691c9e28c81c9dc2445a99140bcbeb05a7f65d0",
+    "base_manifest": "data/processed/preprocessing_20260915T135023_4073b139cc42/manifest.json",
+    "policy": {
+      "version": "paysim-primary-v1",
+      "target": "isFraud",
+      "candidate_features": [
+        "step",
+        "type",
+        "amount"
+      ],
+      "excluded_features": [
+        "oldbalanceOrg",
+        "newbalanceOrig",
+        "oldbalanceDest",
+        "newbalanceDest",
+        "nameOrig",
+        "nameDest",
+        "isFlaggedFraud"
+      ],
+      "exclude_balance_derived_features": true,
+      "source": "https://www.kaggle.com/datasets/ealaxi/paysim1/metadata",
+      "reason": "Publisher warns against all four balance fields because detected fraud transactions are cancelled; identifiers and existing detection flags are excluded from primary inputs.",
+      "scope": "Feature eligibility only; no preprocessing or model training performed"
+    },
+    "method": "train-only numeric imputation/scaling, log amount, one-hot types; optional train-fitted reduction/angles as parent manifest"
+  },
+  "model": "exact",
+  "hyperparameters": {
+    "shots": null,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "model": "vqc_linear_r1_2q",
+    "basis": [
+      "rz",
+      "sx",
+      "x",
+      "cx"
+    ],
+    "noise": {
+      "one_qubit_depolarizing": 0.01,
+      "two_qubit_depolarizing": 0.03,
+      "readout": [
+        [
+          0.98,
+          0.02
+        ],
+        [
+          0.03,
+          0.97
+        ]
+      ]
+    },
+    "interpretation": "trained VQC interpretation: integer outcome modulo 2",
+    "training": "reuse frozen Phase 7 weights",
+    "mode": "exact",
+    "frozen_source_model": "C:\\OneDrive\\Desktop\\QC\\PROJECT\\results\\metrics\\vqc_20260915T144414\\vqc_linear_r1_2q.model"
+  },
+  "quantum_circuit_configuration": {
+    "shots": null,
+    "circuit": {
+      "qubits": 2,
+      "logical_depth": 18,
+      "gate_counts": {
+        "rz": 19,
+        "sx": 10,
+        "cx": 3
+      },
+      "parameters": 6
+    },
+    "mode": "exact",
+    "noise": null
+  },
+  "run_settings": {
+    "shots": 256,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "model": "vqc_linear_r1_2q",
+    "basis": [
+      "rz",
+      "sx",
+      "x",
+      "cx"
+    ],
+    "noise": {
+      "one_qubit_depolarizing": 0.01,
+      "two_qubit_depolarizing": 0.03,
+      "readout": [
+        [
+          0.98,
+          0.02
+        ],
+        [
+          0.03,
+          0.97
+        ]
+      ]
+    },
+    "interpretation": "trained VQC interpretation: integer outcome modulo 2",
+    "training": "reuse frozen Phase 7 weights"
+  },
+  "metadata_provenance": "Retrospective normalization of immutable saved reports/manifests; unrecorded fixed factory constants reconstructed from audited source snapshot. Library defaults remain version-dependent.",
+  "versions": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.4.2",
+    "qiskit": "2.5.2",
+    "qiskit-machine-learning": "0.9.1",
+    "qiskit-aer": "0.17.2"
+  },
+  "versions_missing_reason": null,
+  "source_report": "results/metrics/noise_20260919T083713_d55a9b52/results.json",
+  "source_report_sha256": "8a92169038e4d6da9361a273eb70051ba450aaaca60bc7cec1cc70fc4d2084ff",
+  "selection_status": "reviewed"
+}

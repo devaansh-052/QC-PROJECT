@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "experiment_id": "ensemble_20260919T082441_6070884a__qsvc",
+  "run_id": "ensemble_20260919T082441_6070884a",
+  "timestamp_utc": "2026-09-19T08:24:41+00:00",
+  "timestamp_provenance": "original run ID; run start, not per-model start",
+  "dataset": {
+    "path": "C:\\OneDrive\\Desktop\\QC\\PROJECT\\data\\PS_20174392719_1491204439457_log.csv",
+    "sha256": "16910f90577b0d981bf8ff289714510bb89bc71bff7d3f220f024e287e4eea6b",
+    "bytes": 493534783,
+    "dataset": "PaySim",
+    "kind": "published_synthetic"
+  },
+  "sample_size": {
+    "train": {
+      "rows": 128,
+      "fraud": 64
+    },
+    "validation": {
+      "rows": 1024,
+      "fraud": 6
+    },
+    "test": {
+      "rows": 2048,
+      "fraud": 29
+    }
+  },
+  "feature_set": {
+    "eligible_encoded_inputs": [
+      "numeric__step",
+      "numeric__log_amount",
+      "categorical__type_CASH_IN",
+      "categorical__type_CASH_OUT",
+      "categorical__type_DEBIT",
+      "categorical__type_PAYMENT",
+      "categorical__type_TRANSFER"
+    ],
+    "dimension": 2,
+    "representation": "standard_tanh_v1",
+    "selected_features": null
+  },
+  "split_strategy": {
+    "method": "whole-step temporal partitions, inherited unchanged",
+    "boundaries": {
+      "train": [
+        1,
+        520
+      ],
+      "validation": [
+        521,
+        631
+      ],
+      "test": [
+        632,
+        743
+      ]
+    },
+    "subset_protocol": {
+      "seed": 42,
+      "train_per_class": 64,
+      "validation_rows": 2048,
+      "test_rows": 2048,
+      "dimensions": [
+        2,
+        4,
+        6
+      ],
+      "feature_maps": [
+        "z",
+        "zz"
+      ],
+      "repetitions": [
+        1,
+        2
+      ],
+      "angle_range": [
+        -1.0,
+        1.0
+      ],
+      "angle_encoding": "standard_tanh_v1"
+    },
+    "validation_role": "selection half only; disjoint calibration half retained separately",
+    "training_resample": null,
+    "calibration_rows": 1024
+  },
+  "random_seed": 42,
+  "seed_role": "saved training/sampling seed",
+  "preprocessing": {
+    "manifest": "results/metrics/ensemble_20260919T082441_6070884a/data/manifest.json",
+    "manifest_sha256": "989fa93d5af8a57f0c1b576e2ed629d5244233ca9fe03962a69012ed9bcf3169",
+    "base_manifest": "data/processed/preprocessing_20260915T135023_4073b139cc42/manifest.json",
+    "policy": {
+      "version": "paysim-primary-v1",
+      "target": "isFraud",
+      "candidate_features": [
+        "step",
+        "type",
+        "amount"
+      ],
+      "excluded_features": [
+        "oldbalanceOrg",
+        "newbalanceOrig",
+        "oldbalanceDest",
+        "newbalanceDest",
+        "nameOrig",
+        "nameDest",
+        "isFlaggedFraud"
+      ],
+      "exclude_balance_derived_features": true,
+      "source": "https://www.kaggle.com/datasets/ealaxi/paysim1/metadata",
+      "reason": "Publisher warns against all four balance fields because detected fraud transactions are cancelled; identifiers and existing detection flags are excluded from primary inputs.",
+      "scope": "Feature eligibility only; no preprocessing or model training performed"
+    },
+    "method": "train-only numeric imputation/scaling, log amount, one-hot types; optional train-fitted reduction/angles as parent manifest"
+  },
+  "model": "qsvc",
+  "hyperparameters": {
+    "seed": 42,
+    "features": 2,
+    "alphas": [
+      0.25,
+      0.5,
+      0.75
+    ],
+    "alpha_selection": "maximum selection-validation average precision; first grid value wins ties",
+    "qsvc": "qsvc_zz_r1_2q",
+    "vqc": "vqc_linear_r1_2q",
+    "calibration": "sigmoid on disjoint half of parent validation",
+    "xgboost": {
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05,
+      "n_jobs": 2,
+      "random_state": 42
+    },
+    "alpha": null,
+    "calibrator": {
+      "model": "LogisticRegression",
+      "C": 1,
+      "max_iter": 1000,
+      "random_state": 42
+    }
+  },
+  "quantum_circuit_configuration": {
+    "parent_models": {
+      "qsvc": "C:\\OneDrive\\Desktop\\QC\\PROJECT\\results\\metrics\\qsvc_20260915T143628_87486f0e4a58",
+      "vqc": "C:\\OneDrive\\Desktop\\QC\\PROJECT\\results\\metrics\\vqc_20260915T144414"
+    }
+  },
+  "run_settings": {
+    "seed": 42,
+    "features": 2,
+    "alphas": [
+      0.25,
+      0.5,
+      0.75
+    ],
+    "alpha_selection": "maximum selection-validation average precision; first grid value wins ties",
+    "qsvc": "qsvc_zz_r1_2q",
+    "vqc": "vqc_linear_r1_2q",
+    "calibration": "sigmoid on disjoint half of parent validation",
+    "xgboost": {
+      "n_estimators": 100,
+      "max_depth": 3,
+      "learning_rate": 0.05,
+      "n_jobs": 2,
+      "random_state": 42
+    }
+  },
+  "metadata_provenance": "Retrospective normalization of immutable saved reports/manifests; unrecorded fixed factory constants reconstructed from audited source snapshot. Library defaults remain version-dependent.",
+  "versions": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.4.2",
+    "qiskit": "2.5.2",
+    "qiskit-machine-learning": "0.9.1",
+    "qiskit-aer": "0.17.2"
+  },
+  "versions_missing_reason": null,
+  "source_report": "results/metrics/ensemble_20260919T082441_6070884a/results.json",
+  "source_report_sha256": "cabdf40ce826d2c288a430426b5bbc0e4ecab4b1d2481b2a3d6584c6e520ba99",
+  "selection_status": "reviewed"
+}

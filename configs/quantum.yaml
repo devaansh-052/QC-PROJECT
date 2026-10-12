@@ -1,0 +1,9 @@
+seed: 42
+train_per_class: 64
+validation_rows: 2048
+test_rows: 2048
+dimensions: [2, 4, 6]
+feature_maps: [z, zz]
+repetitions: [1, 2]
+angle_range: [-1.0, 1.0]
+angle_encoding: standard_tanh_v1

@@ -1,0 +1,15 @@
+logistic_regression:
+  C: 1.0
+  max_iter: 1000
+random_forest:
+  n_estimators: 100
+  max_depth: 12
+  min_samples_leaf: 20
+  max_samples: 0.2
+linear_svm:
+  C: 1.0
+  max_iter: 10000
+xgboost:
+  n_estimators: 150
+  max_depth: 5
+  learning_rate: 0.1

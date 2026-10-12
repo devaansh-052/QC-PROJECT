@@ -1,0 +1,6 @@
+{
+  "Classical": ["classical_20260915T135718_d2739e452b90"],
+  "Quantum": ["qsvc_20260915T143628_87486f0e4a58", "vqc_20260915T144414"],
+  "Hybrid": ["hybrid_20260915T151414_02ed38d0", "ensemble_20260919T082441_6070884a"],
+  "Ablations and noise": ["ablation_20260919T082721_8d49e44f", "noise_20260919T083713_d55a9b52"]
+}

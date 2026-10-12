@@ -1,0 +1,5 @@
+# Fractions of ordered distinct steps, never fractions of shuffled rows.
+train_fraction: 0.70
+validation_fraction: 0.15
+# None preserves all training rows. Weight metadata is always computed on train.
+sampling: none

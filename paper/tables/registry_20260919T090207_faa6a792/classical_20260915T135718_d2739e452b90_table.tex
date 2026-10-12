@@ -1,0 +1,13 @@
+\begin{table}
+\caption{Fixed test results; validation-selected thresholds. Compare only under the documented run protocol.}
+\begin{tabular}{lrrrrrrrrr}
+\toprule
+model & features & seed & pr\_auc\_average\_precision & roc\_auc & precision & recall & f1 & training\_seconds & test\_batch\_seconds \\
+\midrule
+logistic\_regression & 7 & 42.00000 & 0.12755 & 0.88702 & 0.19199 & 0.14936 & 0.16801 & 9.95441 & 0.01042 \\
+random\_forest & 7 & 42.00000 & 0.35965 & 0.91463 & 0.63984 & 0.25399 & 0.36364 & 193.46169 & 0.27848 \\
+linear\_svm & 7 & 42.00000 & 0.12771 & 0.88711 & 0.19121 & 0.14936 & 0.16771 & 14.48930 & 0.00226 \\
+xgboost & 7 & 42.00000 & 0.32570 & 0.90961 & 0.97845 & 0.18131 & 0.30593 & 39.31175 & 0.20418 \\
+\bottomrule
+\end{tabular}
+\end{table}

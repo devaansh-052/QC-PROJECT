@@ -1,0 +1,6 @@
+seed: 42
+epochs: 20
+batch_size: 16
+learning_rate: 0.01
+architecture: eligible7_dense16_latent2_v1
+checkpoint_selection: minimum_validation_bce

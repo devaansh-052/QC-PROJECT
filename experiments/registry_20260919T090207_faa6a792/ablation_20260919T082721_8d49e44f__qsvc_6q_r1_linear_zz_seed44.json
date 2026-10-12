@@ -1,0 +1,274 @@
+{
+  "schema_version": 1,
+  "experiment_id": "ablation_20260919T082721_8d49e44f__qsvc_6q_r1_linear_zz_seed44",
+  "run_id": "ablation_20260919T082721_8d49e44f",
+  "timestamp_utc": "2026-09-19T08:27:21+00:00",
+  "timestamp_provenance": "original run ID; run start, not per-model start",
+  "dataset": {
+    "path": "C:\\OneDrive\\Desktop\\QC\\PROJECT\\data\\PS_20174392719_1491204439457_log.csv",
+    "sha256": "16910f90577b0d981bf8ff289714510bb89bc71bff7d3f220f024e287e4eea6b",
+    "bytes": 493534783,
+    "dataset": "PaySim",
+    "kind": "published_synthetic"
+  },
+  "sample_size": {
+    "train": {
+      "rows": 96,
+      "fraud": 48
+    },
+    "validation": {
+      "rows": 2048,
+      "fraud": 13
+    },
+    "test": {
+      "rows": 2048,
+      "fraud": 29
+    }
+  },
+  "feature_set": {
+    "eligible_encoded_inputs": [
+      "numeric__step",
+      "numeric__log_amount",
+      "categorical__type_CASH_IN",
+      "categorical__type_CASH_OUT",
+      "categorical__type_DEBIT",
+      "categorical__type_PAYMENT",
+      "categorical__type_TRANSFER"
+    ],
+    "dimension": 6,
+    "representation": "standard_tanh_v1",
+    "selected_features": null
+  },
+  "split_strategy": {
+    "method": "whole-step temporal partitions, inherited unchanged",
+    "boundaries": {
+      "train": [
+        1,
+        520
+      ],
+      "validation": [
+        521,
+        631
+      ],
+      "test": [
+        632,
+        743
+      ]
+    },
+    "subset_protocol": {
+      "seed": 42,
+      "train_per_class": 64,
+      "validation_rows": 2048,
+      "test_rows": 2048,
+      "dimensions": [
+        2,
+        4,
+        6
+      ],
+      "feature_maps": [
+        "z",
+        "zz"
+      ],
+      "repetitions": [
+        1,
+        2
+      ],
+      "angle_range": [
+        -1.0,
+        1.0
+      ],
+      "angle_encoding": "standard_tanh_v1"
+    },
+    "validation_role": "threshold/model selection",
+    "training_resample": {
+      "seeds": [
+        42,
+        43,
+        44
+      ],
+      "grid": [
+        [
+          4,
+          1,
+          "linear",
+          "zz"
+        ],
+        [
+          2,
+          1,
+          "linear",
+          "zz"
+        ],
+        [
+          6,
+          1,
+          "linear",
+          "zz"
+        ],
+        [
+          4,
+          2,
+          "linear",
+          "zz"
+        ],
+        [
+          4,
+          3,
+          "linear",
+          "zz"
+        ],
+        [
+          4,
+          1,
+          "none",
+          "zz"
+        ],
+        [
+          4,
+          1,
+          "full",
+          "zz"
+        ],
+        [
+          4,
+          1,
+          "none",
+          "z"
+        ]
+      ],
+      "training_rows": 96,
+      "protocol": "48 per class without replacement from fixed 128-row training pool; unchanged validation/test",
+      "representation": "parent train-fitted PCA and angle scales, common within each comparison",
+      "unsupported": {
+        "8_qubits": "Only seven eligible encoded inputs; maximum PCA rank six"
+      }
+    },
+    "calibration_rows": null
+  },
+  "random_seed": 44,
+  "seed_role": "saved training/sampling seed",
+  "preprocessing": {
+    "manifest": "results/metrics/qsvc_20260915T143628_87486f0e4a58/data/manifest.json",
+    "manifest_sha256": "1bc823b5b13fe902087444c2b691c9e28c81c9dc2445a99140bcbeb05a7f65d0",
+    "base_manifest": "data/processed/preprocessing_20260915T135023_4073b139cc42/manifest.json",
+    "policy": {
+      "version": "paysim-primary-v1",
+      "target": "isFraud",
+      "candidate_features": [
+        "step",
+        "type",
+        "amount"
+      ],
+      "excluded_features": [
+        "oldbalanceOrg",
+        "newbalanceOrig",
+        "oldbalanceDest",
+        "newbalanceDest",
+        "nameOrig",
+        "nameDest",
+        "isFlaggedFraud"
+      ],
+      "exclude_balance_derived_features": true,
+      "source": "https://www.kaggle.com/datasets/ealaxi/paysim1/metadata",
+      "reason": "Publisher warns against all four balance fields because detected fraud transactions are cancelled; identifiers and existing detection flags are excluded from primary inputs.",
+      "scope": "Feature eligibility only; no preprocessing or model training performed"
+    },
+    "method": "train-only numeric imputation/scaling, log amount, one-hot types; optional train-fitted reduction/angles as parent manifest"
+  },
+  "model": "qsvc_6q_r1_linear_zz",
+  "hyperparameters": {
+    "C": 1,
+    "kernel": "fidelity_statevector"
+  },
+  "quantum_circuit_configuration": {
+    "circuit": {
+      "qubits": 6,
+      "logical_depth": 17,
+      "gate_counts": {
+        "p": 11,
+        "cx": 10,
+        "h": 6
+      },
+      "parameters": 6
+    },
+    "feature_map": "zz",
+    "entanglement": "linear",
+    "encoding_repetitions": 1
+  },
+  "run_settings": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "grid": [
+      [
+        4,
+        1,
+        "linear",
+        "zz"
+      ],
+      [
+        2,
+        1,
+        "linear",
+        "zz"
+      ],
+      [
+        6,
+        1,
+        "linear",
+        "zz"
+      ],
+      [
+        4,
+        2,
+        "linear",
+        "zz"
+      ],
+      [
+        4,
+        3,
+        "linear",
+        "zz"
+      ],
+      [
+        4,
+        1,
+        "none",
+        "zz"
+      ],
+      [
+        4,
+        1,
+        "full",
+        "zz"
+      ],
+      [
+        4,
+        1,
+        "none",
+        "z"
+      ]
+    ],
+    "training_rows": 96,
+    "protocol": "48 per class without replacement from fixed 128-row training pool; unchanged validation/test",
+    "representation": "parent train-fitted PCA and angle scales, common within each comparison",
+    "unsupported": {
+      "8_qubits": "Only seven eligible encoded inputs; maximum PCA rank six"
+    }
+  },
+  "metadata_provenance": "Retrospective normalization of immutable saved reports/manifests; unrecorded fixed factory constants reconstructed from audited source snapshot. Library defaults remain version-dependent.",
+  "versions": {
+    "numpy": "2.2.6",
+    "scipy": "1.15.3",
+    "scikit-learn": "1.4.2",
+    "qiskit": "2.5.2",
+    "qiskit-machine-learning": "0.9.1",
+    "qiskit-aer": "0.17.2"
+  },
+  "versions_missing_reason": null,
+  "source_report": "results/metrics/ablation_20260919T082721_8d49e44f/results.json",
+  "source_report_sha256": "0b2b8e35bb894562ffb8419f5de01fdb4a8cd0e2db977c9e5709ef9391a2d1c8",
+  "selection_status": "reviewed"
+}

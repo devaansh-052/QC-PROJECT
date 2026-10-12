@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "experiment_id": "features_20260915T140754_40734f02b041__mutual_information_6",
+  "run_id": "features_20260915T140754_40734f02b041",
+  "timestamp_utc": "2026-09-15T14:07:54+00:00",
+  "timestamp_provenance": "original run ID; run start, not per-model start",
+  "dataset": {
+    "path": "C:\\OneDrive\\Desktop\\QC\\PROJECT\\data\\PS_20174392719_1491204439457_log.csv",
+    "sha256": "16910f90577b0d981bf8ff289714510bb89bc71bff7d3f220f024e287e4eea6b",
+    "bytes": 493534783,
+    "dataset": "PaySim",
+    "kind": "published_synthetic"
+  },
+  "sample_size": {
+    "train": {
+      "rows": 6082007,
+      "fraud": 5781
+    },
+    "validation": {
+      "rows": 191147,
+      "fraud": 1180
+    },
+    "test": {
+      "rows": 89466,
+      "fraud": 1252
+    }
+  },
+  "feature_set": {
+    "eligible_encoded_inputs": [
+      "numeric__step",
+      "numeric__log_amount",
+      "categorical__type_CASH_IN",
+      "categorical__type_CASH_OUT",
+      "categorical__type_DEBIT",
+      "categorical__type_PAYMENT",
+      "categorical__type_TRANSFER"
+    ],
+    "dimension": 6,
+    "representation": "mutual_information",
+    "selected_features": [
+      "numeric__step",
+      "numeric__log_amount",
+      "categorical__type_TRANSFER",
+      "categorical__type_PAYMENT",
+      "categorical__type_CASH_IN",
+      "categorical__type_CASH_OUT"
+    ]
+  },
+  "split_strategy": {
+    "method": "whole-step temporal partitions, inherited unchanged",
+    "boundaries": {
+      "train": [
+        1,
+        520
+      ],
+      "validation": [
+        521,
+        631
+      ],
+      "test": [
+        632,
+        743
+      ]
+    },
+    "subset_protocol": null,
+    "validation_role": "threshold/model selection",
+    "training_resample": null,
+    "calibration_rows": null
+  },
+  "random_seed": 42,
+  "seed_role": "saved training/sampling seed",
+  "preprocessing": {
+    "manifest": "data/processed/preprocessing_20260915T135023_4073b139cc42/manifest.json",
+    "manifest_sha256": "94bdc14c40349a0474702ec15cea2d46b2b94cc7c3411cafb308d842ee631492",
+    "base_manifest": "data/processed/preprocessing_20260915T135023_4073b139cc42/manifest.json",
+    "policy": {
+      "version": "paysim-primary-v1",
+      "target": "isFraud",
+      "candidate_features": [
+        "step",
+        "type",
+        "amount"
+      ],
+      "excluded_features": [
+        "oldbalanceOrg",
+        "newbalanceOrig",
+        "oldbalanceDest",
+        "newbalanceDest",
+        "nameOrig",
+        "nameDest",
+        "isFlaggedFraud"
+      ],
+      "exclude_balance_derived_features": true,
+      "source": "https://www.kaggle.com/datasets/ealaxi/paysim1/metadata",
+      "reason": "Publisher warns against all four balance fields because detected fraud transactions are cancelled; identifiers and existing detection flags are excluded from primary inputs.",
+      "scope": "Feature eligibility only; no preprocessing or model training performed"
+    },
+    "method": "train-only numeric imputation/scaling, log amount, one-hot types; optional train-fitted reduction/angles as parent manifest"
+  },
+  "model": "linear_svm_mutual_information",
+  "hyperparameters": {
+    "C": 1,
+    "max_iter": 10000,
+    "dual": false,
+    "class_weights": {
+      "0": 0.500475706466481,
+      "1": 526.0341636395087
+    }
+  },
+  "quantum_circuit_configuration": null,
+  "run_settings": {
+    "dimensions": [
+      2,
+      4,
+      6,
+      8
+    ],
+    "mutual_information_sample_limit": 100000
+  },
+  "metadata_provenance": "Retrospective normalization of immutable saved reports/manifests; unrecorded fixed factory constants reconstructed from audited source snapshot. Library defaults remain version-dependent.",
+  "versions": null,
+  "versions_missing_reason": "Historical feature report did not capture its runtime versions; preprocessing versions describe an earlier run.",
+  "source_report": "results/metrics/features_20260915T140754_40734f02b041/results.json",
+  "source_report_sha256": "a59d31dcbda131ce2c8125872421cb5b909e24b0f69b17d3d0662ed56787d319",
+  "selection_status": "reviewed"
+}

@@ -1,0 +1,4 @@
+preprocessing_run: data/processed/preprocessing_20260915T135023_4073b139cc42
+model_run: results/metrics/classical_20260915T135718_d2739e452b90
+model_name: xgboost
+database: results/simulation/transactions.sqlite3

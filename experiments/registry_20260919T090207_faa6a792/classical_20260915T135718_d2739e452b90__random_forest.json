@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "experiment_id": "classical_20260915T135718_d2739e452b90__random_forest",
+  "run_id": "classical_20260915T135718_d2739e452b90",
+  "timestamp_utc": "2026-09-15T13:57:18+00:00",
+  "timestamp_provenance": "original run ID; run start, not per-model start",
+  "dataset": {
+    "path": "C:\\OneDrive\\Desktop\\QC\\PROJECT\\data\\PS_20174392719_1491204439457_log.csv",
+    "sha256": "16910f90577b0d981bf8ff289714510bb89bc71bff7d3f220f024e287e4eea6b",
+    "bytes": 493534783,
+    "dataset": "PaySim",
+    "kind": "published_synthetic"
+  },
+  "sample_size": {
+    "train": {
+      "rows": 6082007,
+      "fraud": 5781
+    },
+    "validation": {
+      "rows": 191147,
+      "fraud": 1180
+    },
+    "test": {
+      "rows": 89466,
+      "fraud": 1252
+    }
+  },
+  "feature_set": {
+    "eligible_encoded_inputs": [
+      "numeric__step",
+      "numeric__log_amount",
+      "categorical__type_CASH_IN",
+      "categorical__type_CASH_OUT",
+      "categorical__type_DEBIT",
+      "categorical__type_PAYMENT",
+      "categorical__type_TRANSFER"
+    ],
+    "dimension": 7,
+    "representation": "eligible_standardized_onehot",
+    "selected_features": null
+  },
+  "split_strategy": {
+    "method": "whole-step temporal partitions, inherited unchanged",
+    "boundaries": {
+      "train": [
+        1,
+        520
+      ],
+      "validation": [
+        521,
+        631
+      ],
+      "test": [
+        632,
+        743
+      ]
+    },
+    "subset_protocol": null,
+    "validation_role": "threshold/model selection",
+    "training_resample": null,
+    "calibration_rows": null
+  },
+  "random_seed": 42,
+  "seed_role": "saved training/sampling seed",
+  "preprocessing": {
+    "manifest": "data/processed/preprocessing_20260915T135023_4073b139cc42/manifest.json",
+    "manifest_sha256": "94bdc14c40349a0474702ec15cea2d46b2b94cc7c3411cafb308d842ee631492",
+    "base_manifest": "data/processed/preprocessing_20260915T135023_4073b139cc42/manifest.json",
+    "policy": {
+      "version": "paysim-primary-v1",
+      "target": "isFraud",
+      "candidate_features": [
+        "step",
+        "type",
+        "amount"
+      ],
+      "excluded_features": [
+        "oldbalanceOrg",
+        "newbalanceOrig",
+        "oldbalanceDest",
+        "newbalanceDest",
+        "nameOrig",
+        "nameDest",
+        "isFlaggedFraud"
+      ],
+      "exclude_balance_derived_features": true,
+      "source": "https://www.kaggle.com/datasets/ealaxi/paysim1/metadata",
+      "reason": "Publisher warns against all four balance fields because detected fraud transactions are cancelled; identifiers and existing detection flags are excluded from primary inputs.",
+      "scope": "Feature eligibility only; no preprocessing or model training performed"
+    },
+    "method": "train-only numeric imputation/scaling, log amount, one-hot types; optional train-fitted reduction/angles as parent manifest"
+  },
+  "model": "random_forest",
+  "hyperparameters": {
+    "n_estimators": 100,
+    "max_depth": 12,
+    "min_samples_leaf": 20,
+    "max_samples": 0.2,
+    "seed": 42,
+    "class_weights": {
+      "0": 0.500475706466481,
+      "1": 526.0341636395087
+    },
+    "n_jobs": 2
+  },
+  "quantum_circuit_configuration": null,
+  "run_settings": null,
+  "metadata_provenance": "Retrospective normalization of immutable saved reports/manifests; unrecorded fixed factory constants reconstructed from audited source snapshot. Library defaults remain version-dependent.",
+  "versions": {
+    "scikit-learn": "1.4.2",
+    "xgboost": "3.1.1",
+    "numpy": "1.26.4",
+    "joblib": "1.5.2"
+  },
+  "versions_missing_reason": null,
+  "source_report": "results/metrics/classical_20260915T135718_d2739e452b90/results.json",
+  "source_report_sha256": "1ef00feb169b6b6f49d2eb5b1c200c8bf22aabd29f6872c532a7d012e0060207",
+  "selection_status": "reviewed"
+}
